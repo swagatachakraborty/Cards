@@ -17,4 +17,7 @@ func main() {
 
 	fmt.Println("Saving deal to file my_deal")
 	deal.saveTheDeck("my_deal")
-}	
+	
+	fmt.Println("Fetching saved deal from file my_deal")
+	fetchSavedDeckFromFile("my_deal").print()
+}

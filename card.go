@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type card struct {
 	suit string
@@ -21,4 +24,10 @@ func (c card) print() {
 
 func (c card) toString() (string) {
 	return (c.value + " of " + c.suit)
+}
+
+func stringToCard(str string) (card) {
+	suit := strings.Split(str, " of ")[0]
+	value := strings.Split(str, " of ")[1]
+	return card{suit, value}
 }

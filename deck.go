@@ -2,6 +2,7 @@ package main
 
 import (
 	"io/ioutil"
+	"strings"
 )
 
 type deck []card
@@ -48,6 +49,19 @@ func (d deck) toString() (string) {
 	return stringifyDeck
 }
 
+func stringToDeck(str string) deck {
+	var d deck
+	for _, stringifyCards := range strings.Split(str, "\n") {
+		d = append(d, stringToCard(stringifyCards))
+	}
+	return d
+}
+
 func (d deck) saveTheDeck(filepath string) error {
 	return ioutil.WriteFile(filepath, []byte (d.toString()), 0666)
+}
+
+func fetchSavedDeckFromFile(filepath string) (deck) {
+	byteData, _ := ioutil.ReadFile(filepath)
+	return stringToDeck(string (byteData))
 }
