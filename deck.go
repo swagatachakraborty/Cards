@@ -13,8 +13,8 @@ type deck []card
 func getNewDeck() (deck) {
 	suits := getSuits()
 	values := getValues()
-
-	return createDeck(suits, values).shuffle()
+	
+	return createDeck(suits, values)
 }
 
 func createDeck(suits []string, values []string) (deck) {
@@ -73,14 +73,8 @@ func fetchSavedDeckFromFile(filepath string) (deck) {
 	return stringToDeck(string (b))
 }
 
-func (d deck) shuffle() deck {
-	cards := []card (d)
-
-	for i, _ := range cards {
-		j := rand.Intn(len(cards))
-		temp := cards[j]
-		cards[j] = cards[i]
-		cards[i] = temp
-	}
-	return deck (cards)
+func (d deck) shuffle() {
+	rand.Shuffle(len(d), func(i, j int) {
+		d[i], d[j] = d[j], d[i]
+	})
 }

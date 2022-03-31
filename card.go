@@ -27,7 +27,6 @@ func (c card) toString() (string) {
 }
 
 func stringToCard(str string) (card) {
-	suit := strings.Split(str, " of ")[0]
-	value := strings.Split(str, " of ")[1]
-	return card{value, suit}
+	s, v := strings.Split(str, " of ")[0], strings.Split(str, " of ")[1]
+	return card{v, s}
 }

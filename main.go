@@ -8,6 +8,11 @@ func main() {
 	cards := getNewDeck()
 	cards.print()
 
+	fmt.Println("\nShuffling the deck")
+	fmt.Println("------------------")
+	cards.shuffle()
+	cards.print()
+
 	fmt.Println("\nMaking a deal of 5 cards")
 	fmt.Println("------------------------")
 	deal, remainingDeck := cards.deal(5)
