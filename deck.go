@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 type deck []card
@@ -19,9 +20,9 @@ func getNewDeck() (deck) {
 
 func createDeck(suits []string, values []string) (deck) {
 	newDeck := deck{}
-	for _, suit := range suits {
-		for _, value := range values {
-			newDeck = append(newDeck, card{suit, value})
+	for _, s := range suits {
+		for _, v := range values {
+			newDeck = append(newDeck, card{v, s})
 		}
 	}
 	return newDeck
@@ -74,7 +75,10 @@ func fetchSavedDeckFromFile(filepath string) (deck) {
 }
 
 func (d deck) shuffle() {
-	rand.Shuffle(len(d), func(i, j int) {
+	src := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(src)
+
+	r.Shuffle(len(d), func(i, j int) {
 		d[i], d[j] = d[j], d[i]
 	})
 }
