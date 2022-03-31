@@ -1,5 +1,9 @@
 package main
 
+import (
+	"io/ioutil"
+)
+
 type deck []card
 
 func getNewDeck() (deck) {
@@ -27,4 +31,23 @@ func (d deck) print() {
 
 func (d deck) deal(handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) toString() (string) {
+	var stringifyDeck string
+
+	for _, c := range []card (d) {
+		
+		if len(stringifyDeck) > 0 {
+			stringifyDeck += "\n"
+		}
+		
+		stringifyDeck += c.toString()
+	}
+
+	return stringifyDeck
+}
+
+func (d deck) saveTheDeck(filepath string) error {
+	return ioutil.WriteFile(filepath, []byte (d.toString()), 0666)
 }

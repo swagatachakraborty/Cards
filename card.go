@@ -16,5 +16,9 @@ func getValues() ([]string){
 }
 
 func (c card) print() {
-	fmt.Println( c.value ," of ", c.suit)
+	fmt.Println(c.toString())
+}
+
+func (c card) toString() (string) {
+	return (c.value + " of " + c.suit)
 }

@@ -14,4 +14,7 @@ func main() {
 	deal.print()
 	fmt.Println("Remaining Deck:")
 	remainingDeck.print()
+
+	fmt.Println("Saving deal to file my_deal")
+	deal.saveTheDeck("my_deal")
 }	
