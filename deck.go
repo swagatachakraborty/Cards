@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -62,6 +64,10 @@ func (d deck) saveTheDeck(filepath string) error {
 }
 
 func fetchSavedDeckFromFile(filepath string) (deck) {
-	byteData, _ := ioutil.ReadFile(filepath)
-	return stringToDeck(string (byteData))
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return stringToDeck(string (b))
 }
