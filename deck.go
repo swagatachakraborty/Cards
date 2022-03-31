@@ -2,7 +2,7 @@ package main
 
 type deck []card
 
-func getNewDeck() deck {
+func getNewDeck() (deck) {
 	suits := getSuits()
 	values := getValues()
 
@@ -23,4 +23,8 @@ func (d deck) print() {
 	for _, c := range d {
 		c.print()
 	}
+}
+
+func (d deck) deal(handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
