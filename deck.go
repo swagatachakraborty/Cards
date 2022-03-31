@@ -14,7 +14,7 @@ func getNewDeck() (deck) {
 	suits := getSuits()
 	values := getValues()
 
-	return createDeck(suits, values).suffel()
+	return createDeck(suits, values).shuffle()
 }
 
 func createDeck(suits []string, values []string) (deck) {
@@ -73,7 +73,7 @@ func fetchSavedDeckFromFile(filepath string) (deck) {
 	return stringToDeck(string (b))
 }
 
-func (d deck) suffel() deck {
+func (d deck) shuffle() deck {
 	cards := []card (d)
 
 	for i, _ := range cards {
