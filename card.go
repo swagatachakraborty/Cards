@@ -6,8 +6,8 @@ import (
 )
 
 type card struct {
-	suit string
 	value string
+	suit string
 }
 
 func getSuits() ([]string){
@@ -29,5 +29,5 @@ func (c card) toString() (string) {
 func stringToCard(str string) (card) {
 	suit := strings.Split(str, " of ")[0]
 	value := strings.Split(str, " of ")[1]
-	return card{suit, value}
+	return card{value, suit}
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -13,7 +14,7 @@ func getNewDeck() (deck) {
 	suits := getSuits()
 	values := getValues()
 
-	return createDeck(suits, values)
+	return createDeck(suits, values).suffel()
 }
 
 func createDeck(suits []string, values []string) (deck) {
@@ -70,4 +71,16 @@ func fetchSavedDeckFromFile(filepath string) (deck) {
 		os.Exit(1)
 	}
 	return stringToDeck(string (b))
+}
+
+func (d deck) suffel() deck {
+	cards := []card (d)
+
+	for i, _ := range cards {
+		j := rand.Intn(len(cards))
+		temp := cards[j]
+		cards[j] = cards[i]
+		cards[i] = temp
+	}
+	return deck (cards)
 }
